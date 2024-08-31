@@ -19,7 +19,7 @@ export default function CourseGoalList({
   }
   if (goals.length > 3) {
     infobox = (
-      <InfoBox mode="warning">You have too many goals on your plates</InfoBox>
+      <InfoBox mode="warning" severity="medium">You have too many goals on your plates</InfoBox>
     );
   }
 
