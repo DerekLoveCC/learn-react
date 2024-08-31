@@ -3,14 +3,23 @@ import Goal from "./models/Goal";
 
 type CourseGoalListProps = {
   goals: Goal[];
+  onDeleteGoal: (id: number) => void;
 };
 
-export default function CourseGoalList({ goals }: CourseGoalListProps) {
+export default function CourseGoalList({
+  goals,
+  onDeleteGoal: handleDelete,
+}: CourseGoalListProps) {
   return (
     <ul>
       {goals.map((g) => (
         <li key={g.id}>
-          <CourseGoal title={g.title} description={g.description}></CourseGoal>
+          <CourseGoal
+            id={g.id}
+            title={g.title}
+            description={g.description}
+            onDelete={handleDelete}
+          ></CourseGoal>
         </li>
       ))}
     </ul>

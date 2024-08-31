@@ -1,14 +1,23 @@
-export default function CourseGoal(props: {
+type CourseGoalProps = {
+  id: number;
   title: string;
   description: string;
-}) {
+  onDelete: (id: number) => void;
+};
+
+export default function CourseGoal({
+  title,
+  description,
+  id,
+  onDelete,
+}: CourseGoalProps) {
   return (
     <article>
       <div>
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
       </div>
-      <button>Delete</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </article>
   );
 }

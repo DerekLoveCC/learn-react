@@ -3,19 +3,24 @@ import Header from "./Header";
 import goalsImg from "./assets/goals.jpg";
 import CourseGoalList from "./CourseGoalList";
 import Goal from "./models/Goal";
+import AddNewGoal from "./AddNewGoal";
 
 export default function CourseMain() {
   const [goals, setGoals] = useState<Goal[]>([]);
 
-  function handleAddGoal(): void {
+  function handleAddGoal(title: string, summary: string): void {
     setGoals((pre) => {
       const newGoal = {
         id: Math.random(),
-        title: "sss",
-        description: "descriptin sss",
+        title: title,
+        description: summary,
       };
       return [...pre, newGoal];
     });
+  }
+
+  function handleDeleteGoal(id: number) {
+    setGoals((prevGoals) => prevGoals.filter((g) => g.id !== id));
   }
 
   return (
@@ -23,8 +28,11 @@ export default function CourseMain() {
       <Header img={{ src: goalsImg, alt: "A list of goals" }}>
         <h1>Your Course Goals</h1>
       </Header>
-      <button onClick={handleAddGoal}>Add Goal</button>
-      <CourseGoalList goals={goals}></CourseGoalList>
+      <AddNewGoal onAddNew={handleAddGoal}></AddNewGoal>
+      <CourseGoalList
+        goals={goals}
+        onDeleteGoal={handleDeleteGoal}
+      ></CourseGoalList>
     </main>
   );
 }
