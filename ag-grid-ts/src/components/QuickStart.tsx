@@ -1,11 +1,22 @@
 import { useState } from "react";
+// Theme
+import { AgGridReact } from "@ag-grid-community/react";
 // React Grid Logic
-import "ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-grid.css";
 // Core CSS
-import "ag-grid-community/styles/ag-theme-quartz.css";
-import { AgGridReact } from "ag-grid-react";
+import "@ag-grid-community/styles/ag-theme-quartz.css";
 import "./QuickStart.css";
+import { ColDef, ModuleRegistry } from "@ag-grid-community/core";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 
+interface IRow {
+  make: string;
+  model: string;
+  price: number;
+  electric: boolean;
+}
+
+ModuleRegistry.register(ClientSideRowModelModule);
 const QuickStart = () => {
   // Row Data: The data to be displayed.
   const [rowData] = useState([
@@ -18,22 +29,26 @@ const QuickStart = () => {
   ]);
 
   // Column Definitions: Defines & controls grid columns.
-  const [colDefs] = useState([
+  const [colDefs] = useState<ColDef<IRow>[]>([
     { field: "make", headerName: "Maker" },
     { field: "model", headerName: "Model" },
     { field: "price", headerName: "$Price" },
     { field: "electric", headerName: "Electric" },
   ]);
 
-  // const defaultColDef = {
-  //   flex: 1,
-  // };
+  const defaultColDef = {
+    flex: 1,
+  };
 
   // Container: Defines the grid's theme & dimensions.
   return (
     <div className={"ag-theme-quartz grid-wrapper"}>
-      <div>Ag Grid Start</div>
-      <AgGridReact rowData={rowData} columnDefs={colDefs}/>
+      <div>Ag Grid Actions</div>
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={colDefs}
+        defaultColDef={defaultColDef}
+      />
     </div>
   );
 };
