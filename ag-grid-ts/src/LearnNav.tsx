@@ -1,5 +1,5 @@
-import QuickStart from "./components/QuickStart";
+import Car from "./components/Car";
 
 export default function LearnNav() {
-  return <QuickStart></QuickStart>;
+  return <Car></Car>;
 }
