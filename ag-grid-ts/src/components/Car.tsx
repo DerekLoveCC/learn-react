@@ -50,7 +50,15 @@ const Car = () => {
     },
     { field: "quantity", headerName: "Quantity", cellDataType: "number", editable: (params) => { return params.data != undefined && params.data.price > 30000 && params.data.price < 100000; } },
     { field: "electric", headerName: "Electric", cellDataType: "boolean" },
-    { field: "year", headerName: "Year", cellDataType: "string", },
+    {
+      headerName: "Year",
+      cellDataType: "string",
+      valueGetter: (params) => params?.data?.year.toLocaleDateString(),
+      valueSetter: (params) => {
+        params.data.year = new Date(params.newValue);
+        return true;
+      }
+    },
   ]);
 
   const defaultColDef = {
