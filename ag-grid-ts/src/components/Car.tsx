@@ -74,9 +74,11 @@ const Car = () => {
     return {
       editableColumn: {
         editable: (params: EditableCallbackParams<ICar>) => {
+          console.log(params);
           return true;
         },
         cellStyle: (params: CellClassParams<ICar>) => {
+          console.log(params);
           return { backgroundColor: "lightgreen" }
         },
       }
@@ -112,20 +114,20 @@ const Car = () => {
   const handlePrevious = () => {
     agGridRef?.current?.api.tabToPreviousCell();
   }
-  const handleRowEditingStarted = useCallback((event) => {
-    console.log("never called - not doing row editing");
+  const handleRowEditingStarted = useCallback((event: any) => {
+    console.log("never called - not doing row editing", event);
   }, []);
 
-  const handleRowEditingStopped = useCallback((event) => {
-    console.log("never called - not doing row editing");
+  const handleRowEditingStopped = useCallback((event: any) => {
+    console.log("never called - not doing row editing", event);
   }, []);
 
-  const handleCellEditingStarted = useCallback((event) => {
-    console.log("cellEditingStarted");
+  const handleCellEditingStarted = useCallback((event: any) => {
+    console.log("cellEditingStarted", event);
   }, []);
 
-  const handleCellEditingStopped = useCallback((event) => {
-    console.log("cellEditingStopped");
+  const handleCellEditingStopped = useCallback((event: any) => {
+    console.log("cellEditingStopped", event);
   }, []);
 
   // Container: Defines the grid's theme & dimensions.
