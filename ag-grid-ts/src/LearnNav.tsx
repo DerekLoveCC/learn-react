@@ -1,9 +1,9 @@
 // import Car from "./components/Car";
-import ReadonlyEditGrid from "./components/ReadonlyEditGrid";
+import CustomCellEditor from "./components/CustomCellEditor";
 
 export default function LearnNav() {
   return <>
     {/* <Car></Car>; */}
-    <ReadonlyEditGrid></ReadonlyEditGrid>
+    <CustomCellEditor></CustomCellEditor>
   </>
 }
